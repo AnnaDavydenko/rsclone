@@ -102,8 +102,8 @@ export const config: any = (() => {
     // config
 
     config.game = {
-        w: 960,
-        h: 480,
+        w: window.innerWidth,
+        h: window.innerHeight,
         fontSize : {
             min : 12,
             max : 30,

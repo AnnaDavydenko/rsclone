@@ -396,11 +396,7 @@ export class Play extends Scene {
         const end = start + num;
         incrementAnimation(start, end, (current: number) => {
             game.data.score = current;
-            if (game.data.end) {
-                return call();
-            }
-            //todo comment
-            //game.data.end ?? call();
+            call();
         })
     }
 
