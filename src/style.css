@@ -10,29 +10,31 @@ body {
     overflow: hidden;
 }
 
-#app {
-    position: relative;
-    margin: 10px auto;
-    background: #222;
-    font-size: 14px;
-    box-shadow: 5px 5px 10px -5px #000;
-    border-radius: 5px;
-    overflow: hidden;
-}
+/*#app {*/
+/*    position: relative;*/
+/*    margin: 10px auto;*/
+/*    background-image: url('./assets/img/25.jpg');*/
+/*    background-repeat: no-repeat;*/
+/*    background-size: cover;*/
+/*    font-size: 14px;*/
+/*    box-shadow: 5px 5px 10px -5px #000;*/
+/*    border-radius: 5px;*/
+/*    overflow: hidden;*/
+/*}*/
 
-#logo {
-    pointer-events: none;
-    position: relative;
-    z-index: 2;
-    padding: 0.8% 0;
-    width: 100%;
-    text-align: center;
-}
+/*#logo {*/
+/*    pointer-events: none;*/
+/*    position: relative;*/
+/*    z-index: 2;*/
+/*    padding: 0.8% 0;*/
+/*    width: 100%;*/
+/*    text-align: center;*/
+/*}*/
 
-#logo img {
-    transition: all 0.5s ease;
-    width: 10%;
-}
+/*#logo img {*/
+/*    transition: all 0.5s ease;*/
+/*    width: 10%;*/
+/*}*/
 
 #logo.play-status img {
     width: 6%;

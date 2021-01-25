@@ -6,9 +6,14 @@ import Rank from './containers/Rank';
 import { makeStyles } from '@material-ui/core/styles';
 import { IGameData } from './types/game';
 import { config } from './config/config';
-import logo from './assets/img/logo-01.png';
+import background from './assets/img/25.jpg';
+import logo from './assets/img/download.gif';
+import cosmonavt from './assets/img/cosmonavt.png';
+import gameRulesImg from './assets/img/game-rules-512.png';
+import happyPug from './assets/img/eA9IRlBEpQ-removebg-preview.png';
 import './style.css';
 import './common.css';
+import { res } from './utils/res';
 
 export const SCENES = {
     START: 'start',
@@ -22,6 +27,16 @@ function App() {
 
     const [scene, setScene] = useState<string>(SCENES.START);
     const [gameData, setGameData] = useState<IGameData>({ ...config.data(), end: false });
+    const [gameRules, setGameRules] = useState<boolean>(false);
+
+    const handleGameRules = useCallback(() => {
+        setGameRules(!gameRules);
+        // if(gameRules === false){
+        //     setGameRules(true);
+        // } else {
+        //     setGameRules(false);
+        // }
+    }, [gameRules]);
 
     const handleSceneChange = useCallback((scene: string) => {
         setScene(scene);
@@ -36,14 +51,32 @@ function App() {
 
     const updateGame = useCallback((updates: IGameData) => setGameData(updates), []);
 
+
+
     return (
         <>
             <div id="app" className={classes.app}>
-                <div id="logo" className={classes.logo}>
+                <header className={classes.header}>
+                    <button id="gameRules" className={classes.gameRules} onClick={handleGameRules}>
+                        <img src={gameRulesImg} alt="game rules" />
+                    </button>
+                </header>
+                <div className={classes.logo}>
                     <img src={logo} alt="logo" />
                 </div>
+                <p className={classes.logoText}>
+                    <p>To the Moon</p>
+                    <p>And Sleep</p>
+                </p>
+
+                <div className={classes.cosmonavt}>
+                    <img src={cosmonavt} alt="cosmonavt" />
+                </div>
+                <div className={classes.happyPug}>
+                    <img src={happyPug} alt="happy pug" />
+                </div>
                 <div id="container" className={classes.absolute}>
-                    {scene === SCENES.START && <Start onSceneChange={handleSceneChange} />}
+                    {scene === SCENES.START && <Start onSceneChange={handleSceneChange} gameRules={gameRules} />}
                     {scene === SCENES.PLAY && <PlayGame gameData={gameData} onGameUpdate={updateGame} onSceneChange={handleSceneChange} />}
                     {scene === SCENES.OVER && <Over gameData={gameData} onSceneChange={handleSceneChange} />}
                     {scene === SCENES.RANK && <Rank onSceneChange={handleSceneChange} onGameStatusChange={updateGameStatus} />}
@@ -51,8 +84,8 @@ function App() {
             </div>
             <footer>
                 <span>
-                    Crafted with by
-                    <a href="http://4ark.me"> @4Ark</a>/<a href="https://github.com/gd4Ark/star-battle">GitHub</a>
+                    Created by
+                    <a href="https://github.com/AnnaDavydenko">GitHub</a>
                 </span>
             </footer>
         </>
@@ -60,6 +93,10 @@ function App() {
 }
 
 const useStyles = makeStyles({
+    header: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+    },
     absolute: {
         position: 'absolute',
         top: 0,
@@ -68,24 +105,63 @@ const useStyles = makeStyles({
     app: {
         position: 'relative',
         margin: '10px auto',
-        background: '#222',
+        backgroundImage: `url(${background})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
         fontSize: '14px',
         boxShadow: '5px 5px 10px -5px #000',
         borderRadius: '5px',
         overflow: 'hidden',
     },
     logo: {
-        pointerEvents: 'none',
-        position: 'relative',
-        zIndex: 2,
-        padding: '0.8% 0',
-        width: '100%',
-        textAlign: 'center',
+        display: 'flex',
+        justifyContent: 'center',
         '& img': {
             transition: 'all 0.5s ease',
-            width: '10%',
         },
     },
+    logoText: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        letterSpacing: '5px',
+        position: 'absolute',
+        right: '345px',
+        fontWeight: 500,
+        color: '#ced8e6',
+        fontFamily: 'Cinzel',
+    },
+    cosmonavt: {
+        position: 'relative',
+        bottom: '185px',
+        right: '22px',
+        '& img': {
+            transform: 'rotate(-47deg)',
+            width: '15%',
+        },
+    },
+    happyPug: {
+        position: 'relative',
+        bottom: '477px',
+        left: '882px',
+        '& img': {
+            width: '11%',
+        },
+    },
+    gameRules: {
+        width: '70px',
+        height: '70px',
+        cursor: 'pointer',
+        zIndex: 2,
+        padding: 0,
+        border: 0,
+        '& img': {
+            transition: 'all 0.5s ease',
+            width: '100%',
+            height: '100%',
+            background: '#101012',
+        },
+    }
 });
 
 export default App;
