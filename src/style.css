@@ -60,6 +60,9 @@ body {
 #start-btn p:nth-child(2) {
     display: none;
 }
+/*#start-btn {*/
+/*    bottom: 300px;*/
+/*}*/
 
 #start-btn:disabled p:nth-child(1) {
     display: none;

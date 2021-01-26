@@ -32,7 +32,7 @@ const Over = (props: IOver) => {
 
     return (
         <Column id="over" classes={classes.absolute}>
-            <div>
+            <div className={classes.gameIcons}>
                 <Message>
                     <span>
                         <img src={time} alt="time" />
@@ -57,7 +57,7 @@ const Over = (props: IOver) => {
             </div>
             <input type="text" id="name" placeholder="Please enter your name" onChange={handleChangeName} />
             <Button id="submit-btn" disabled={!name} onClick={handleSubmit}>
-                Продолжить игру
+                Continue
             </Button>
         </Column>
     );
@@ -65,9 +65,13 @@ const Over = (props: IOver) => {
 
 const useStyles = makeStyles({
     absolute: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
+        height: '100%',
+    },
+    gameIcons: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        height: '60%',
     },
 });
 
