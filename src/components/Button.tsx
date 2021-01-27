@@ -21,22 +21,32 @@ const Button = (props: IButton) => {
 const useStyles = makeStyles({
     root: {
         position: 'relative',
-        display: 'block',
-        fontWeight: 'bold',
-        fontSize: '1rem',
-        color: 'inherit',
-        textDecoration: 'none',
+        display: 'inline-block',
         margin: '0 auto 5px auto',
-        border: 'solid 1px #D94E3B',
-        background: '#cb3b27',
+        cursor: 'pointer',
+        borderRadius: '10px',
         textAlign: 'center',
         padding: '6px 20px',
-        transition: 'all 0.1s',
-        boxShadow: '0px 5px 0px #84261a',
-        borderRadius: '20px',
         outline: 'none',
-        cursor: 'pointer',
-        overflow: 'hidden',
+        border: 'none',
+        color: '#eff4fb',
+        background: '#781212',
+        fontFamily: 'Cinzel',
+        fontWeight: 700,
+        fontSize: '32px',
+
+        textShadow: '0px 1px #fff, 0px -1px #262F33',
+        transition: 'box-shadow .1s ease-in-out',
+        boxShadow: '0px 5px 0px #331010',
+        '&:hover': {
+            color: '#b374f6',
+            textShadow: '0x -1px #781212',
+        },
+
+        '&:active': {
+            boxShadow: '0px 3px transparent',
+            transform: 'translate(0, 5px)',
+        }
     },
 });
 

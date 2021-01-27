@@ -31,7 +31,7 @@ const Over = (props: IOver) => {
     const handleChangeName = useCallback((e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value), []);
 
     return (
-        <Column id="over" classes={classes.absolute}>
+        <div id="over" className={classes.absolute}>
             <div className={classes.gameIcons}>
                 <Message>
                     <span>
@@ -59,13 +59,16 @@ const Over = (props: IOver) => {
             <Button id="submit-btn" disabled={!name} onClick={handleSubmit}>
                 Continue
             </Button>
-        </Column>
+        </div>
     );
 };
 
 const useStyles = makeStyles({
     absolute: {
         height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
     },
     gameIcons: {
         display: 'flex',

@@ -27,7 +27,7 @@ const Rank = (props: IRank) => {
     let position = 0;
 
     return (
-        <Column id="rank" classes={classes.absolute}>
+        <div id="rank" className={classes.absolute}>
             <table className={classes.scroll}>
                 <thead>
                     <tr>
@@ -46,7 +46,7 @@ const Rank = (props: IRank) => {
                             position++;
                         }
                         return (
-                            <tr key={position}>
+                            <tr key={index}>
                                 <td>{numberFormat(position)}</td>
                                 <td>{gameResult.name}</td>
                                 <td>{numberFormat(gameResult.score)}</td>
@@ -59,7 +59,7 @@ const Rank = (props: IRank) => {
             <Button id="restart-btn" onClick={handleRestart}>
                 Restart
             </Button>
-        </Column>
+        </div>
     );
 };
 
@@ -77,8 +77,19 @@ const useStyles = makeStyles({
         position: 'absolute',
         top: 0,
         left: 0,
+        height: '100%',
+        textAlign: 'center',
     },
     scroll: {
+        height: 'calc(100% - 120px)',
+        overflow: 'hidden',
+        background: '#00000069',
+        width: '80%',
+        display: 'flex',
+        flexDirection: 'column',
+        margin: '25px auto',
+        justifyContent: 'center',
+        textAlign: 'center',
         '& tbody': {
             display: 'block',
             height: '100%',

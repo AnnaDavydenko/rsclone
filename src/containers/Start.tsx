@@ -6,17 +6,20 @@ import Message from '../components/Message';
 import { res } from '../utils/res';
 import { SCENES } from '../App';
 import GameRules from './GameRules';
-import gameRulesImg from '../assets/img/game-rules-512.svg';
+import gameRulesImg from '../assets/img/23.svg';
 import logo from '../assets/img/download.gif';
 
 interface IStart {
-    onSceneChange: (scene: string) => void;}
+    onSceneChange: (scene: string) => void;
+    handleGameRules: () => void;
+    showGameRules: boolean;
+}
 
 
 const Start = (props: IStart) => {
-    const { onSceneChange } = props;
-    const classes = useStyles({});
-    const [showGameRules, setShowGameRules] = useState<boolean>(false);
+    const { onSceneChange, handleGameRules, showGameRules } = props;
+
+
 
     const handleStart = useCallback(() => {
         res.loadAssets(() => {
@@ -24,26 +27,25 @@ const Start = (props: IStart) => {
         });
     }, [onSceneChange]);
 
-    const handleGameRules = useCallback(() => {
-        setShowGameRules(!showGameRules);
-    }, [showGameRules]);
 
+    const classes = useStyles({showGameRules});
     return (
         <>
             <header className={classes.header}>
-                <button id="gameRules" className={classes.gameRules} onClick={handleGameRules}>
+                <button id="gameRules" className={classes.gameRulesBtn} onClick={handleGameRules}>
                     <img src={gameRulesImg} alt="game rules" />
                 </button>
             </header>
             <div className={classes.main}>
                 <div>
                     <div className={classes.logo}>
-                        <img src={logo} alt="logo" />
+                        <img src={logo} className={classes.logoImage} alt="logo" />
+                        <p className={classes.logoText}>
+                            <p>To the Moon</p>
+                            <p>And Sleep</p>
+                        </p>
                     </div>
-                    <p className={classes.logoText}>
-                        <p>To the Moon</p>
-                        <p>And Sleep</p>
-                    </p>
+
                 </div>
 
                 {!showGameRules && (
@@ -64,7 +66,7 @@ const Start = (props: IStart) => {
 };
 
 const useStyles = makeStyles({
-    header: {
+    header:{
         display: 'flex',
         justifyContent: 'flex-end',
     },
@@ -74,17 +76,20 @@ const useStyles = makeStyles({
         justifyContent: 'space-between',
         height: '400px',
     },
+    logoImage: ({showGameRules}:{showGameRules:boolean}) => ({
+        transition: 'all 0.5s ease',
+        width: showGameRules ? '40%' :'50%',
+    }),
 
-    logo: {
+    logo:({showGameRules}:{showGameRules:boolean}) => ({
         display: 'flex',
         justifyContent: 'center',
         position: 'relative',
-        '& img': {
-            transition: 'all 0.5s ease',
-            width: '50%',
-        },
-    },
-    logoText: {
+        top: showGameRules ? '-30px' : '0px',
+        flexDirection: 'column',
+        alignItems: 'center',
+    }),
+    logoText: ({showGameRules}:{showGameRules:boolean}) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -93,15 +98,18 @@ const useStyles = makeStyles({
         fontWeight: 500,
         color: '#ced8e6',
         fontFamily: 'Cinzel',
-    },
+        fontSize: showGameRules ? '12px' : '14px',
+        transition: 'all 0.5s ease',
+    }),
 
-    gameRules: {
+    gameRulesBtn: {
         width: '90px',
         height: '90px',
         cursor: 'pointer',
         zIndex: 2,
         padding: 0,
         border: 0,
+        outline: 'none',
         '& img': {
             transition: 'all 0.5s ease',
             width: '100%',
