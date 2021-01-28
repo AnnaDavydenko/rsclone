@@ -13,14 +13,6 @@ html,body{
 li{
     list-style-type: none;
 }
-.makeStyles-pre-22 li:before {
-    content: ''; /* для отображения контента в данном солучаи - background: url(./imeg/jVfPr0P4gm0.jpg); */
-    display: inline-block; /* тоже необходим для отображения нашего изображения */
-    width: 30px;
-    height: 30px;
-    background: url(assets/img/li.png) no-repeat; /* путь к нашему изображению */
-    background-size: contain; /* для отображения изображения в указанных нами размерами width: 150px; height: 150px; */
-}
 
 .column{
     display: flex;

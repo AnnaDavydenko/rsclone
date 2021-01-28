@@ -37,7 +37,7 @@ const Start = (props: IStart) => {
                 </button>
             </header>
             <div className={classes.main}>
-                <div>
+
                     <div className={classes.logo}>
                         <img src={logo} className={classes.logoImage} alt="logo" />
                         <p className={classes.logoText}>
@@ -46,7 +46,7 @@ const Start = (props: IStart) => {
                         </p>
                     </div>
 
-                </div>
+
 
                 {!showGameRules && (
                     <Column id="start">
@@ -110,11 +110,11 @@ const useStyles = makeStyles({
         padding: 0,
         border: 0,
         outline: 'none',
+        background: 'transparent',
         '& img': {
             transition: 'all 0.5s ease',
             width: '100%',
             height: '100%',
-            background: '#101012',
         },
     },
 });

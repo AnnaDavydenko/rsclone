@@ -30,7 +30,7 @@ const useStyles = makeStyles({
         outline: 'none',
         border: 'none',
         color: '#eff4fb',
-        background: '#781212',
+        background: 'linear-gradient(180deg, rgb(1 0 2) 0%, rgb(121 18 18) 100%)',
         fontFamily: 'Cinzel',
         fontWeight: 700,
         fontSize: '32px',
@@ -39,8 +39,9 @@ const useStyles = makeStyles({
         transition: 'box-shadow .1s ease-in-out',
         boxShadow: '0px 5px 0px #331010',
         '&:hover': {
-            color: '#b374f6',
-            textShadow: '0x -1px #781212',
+            color: '#100919',
+            textShadow: '1px -1px #781212',
+            background: 'linear-gradient(180deg, rgb(15 9 25) 0%, rgba(255 169 108 / 79%) 100%)',
         },
 
         '&:active': {
