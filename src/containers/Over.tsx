@@ -10,6 +10,7 @@ import { storageDataKey } from './Rank';
 import playerBullet from '../assets/img/playerBullet.png';
 import score from '../assets/img/score.png';
 import time from '../assets/img/time3.png';
+import { OutlinedInputProps, TextField } from '@material-ui/core';
 
 interface IOver {
     gameData: IGameData;
@@ -55,7 +56,20 @@ const Over = (props: IOver) => {
                     <span>{numberFormat(gameData.shoot)}</span>
                 </Message>
             </div>
-            <input type="text" id="name" placeholder="Please enter your name" onChange={handleChangeName} />
+
+            <form className={classes.inputContainer} noValidate autoComplete="off">
+                <TextField id="outlined-basic" label="Your name" variant="outlined"
+                           InputProps={{ classes: { input: classes.input } }}
+                           InputLabelProps={{
+                               classes: {
+                                   root: classes.label,
+                                   focused: classes.focusedLabel,
+                               },
+                           }}
+                           onChange={handleChangeName}
+                />
+            </form>
+
             <Button id="submit-btn" disabled={!name} onClick={handleSubmit}>
                 Continue
             </Button>
@@ -76,6 +90,26 @@ const useStyles = makeStyles({
         justifyContent: 'space-evenly',
         height: '60%',
     },
+    inputContainer: {
+        alignSelf: 'center',
+        background: '#7711115c',
+        borderRadius: '7px',
+    },
+    input: {
+        color: "#eff4fb",
+        fontSize: '20px',
+    },
+    label: {
+        color: '#ca875b',
+        fontSize: '16px',
+        "&$focusedLabel": {
+            color: "#ca875b",
+        },
+        "&$erroredLabel": {
+            color: "orange"
+        }
+    },
+    focusedLabel: {},
 });
 
 export default Over;

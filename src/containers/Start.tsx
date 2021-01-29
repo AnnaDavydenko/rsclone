@@ -1,8 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Column from '../components/Column';
 import Button from '../components/Button';
-import Message from '../components/Message';
 import { res } from '../utils/res';
 import { SCENES } from '../App';
 import GameRules from './GameRules';

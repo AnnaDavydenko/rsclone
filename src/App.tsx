@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import Start from './containers/Start';
 import PlayGame from './containers/PlayGame';
 import Over from './containers/Over';
@@ -9,11 +9,9 @@ import { config } from './config/config';
 import background from './assets/img/25.png';
 import background1 from './assets/img/1268307.png';
 import background3 from './assets/img/5.png';
-import logo from './assets/img/download.gif';
-import gameRulesImg from './assets/img/game-rules-512.svg';
+import background4 from './assets/img/26.png';
 import './style.css';
 import './common.css';
-import { res } from './utils/res';
 
 export const SCENES = {
     START: 'start',
@@ -28,9 +26,25 @@ interface IStyleParams {
 
 function App() {
 
-    const [scene, setScene] = useState<string>(SCENES.START);
+    const [imageLoaded, setImageLoaded] = useState<boolean>(false);
+    const [scene, setScene] = useState<string>(SCENES.OVER);
     const [gameData, setGameData] = useState<IGameData>({ ...config.data(), end: false });
     const [showGameRules, setShowGameRules] = useState<boolean>(false);
+
+    const backgroundImage = useMemo(() => {
+        let image = null;
+        if (scene === SCENES.OVER) {
+            image = background1;
+        } else if (scene === SCENES.RANK){
+            image = background4;
+        } else {
+            image = background;
+        }
+        if (showGameRules) {
+            image = background3;
+        }
+        return image;
+    }, [scene, showGameRules]);
 
     const handleSceneChange = useCallback((scene: string) => {
         setScene(scene);
@@ -49,7 +63,9 @@ function App() {
 
     const updateGame = useCallback((updates: IGameData) => setGameData(updates), []);
 
-    const classes = useStyles({scene, showGameRules});
+    const handleBackgroundLoad = useCallback(() => setImageLoaded(true), []);
+
+    const classes = useStyles({backgroundImage, imageLoaded});
 
     return (
         <>
@@ -63,6 +79,7 @@ function App() {
                 {scene === SCENES.OVER && <Over gameData={gameData} onSceneChange={handleSceneChange} />}
                 {scene === SCENES.RANK && <Rank onSceneChange={handleSceneChange} onGameStatusChange={updateGameStatus} />}
             </div>
+            <img className={classes.fakeImage} src={backgroundImage} alt="fake bg" onLoad={handleBackgroundLoad} />
             <footer className={classes.footer}>
                 <span>
                     Created by
@@ -77,25 +94,17 @@ const useStyles = makeStyles({
     absolute: {
 
     },
-    app: ({scene, showGameRules}: IStyleParams) => {
-        let backgroundImage = null;
-        if (scene === SCENES.OVER) {
-            backgroundImage = background1;
-        } else {
-            backgroundImage = background;
-        }
-        if (showGameRules) {
-            backgroundImage = background3;
-        }
-        return {
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            fontSize: '14px',
-            boxShadow: '5px 5px 10px -5px #000',
-            overflow: 'hidden',
-        }
+    fakeImage: {
+        display: 'none',
     },
+    app: ({backgroundImage, imageLoaded}: any) => ({
+        backgroundImage: imageLoaded ?  `url(${backgroundImage})` : 'initial',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        fontSize: '14px',
+        boxShadow: '5px 5px 10px -5px #000',
+        overflow: 'hidden',
+    }),
     footer: {
         display: 'none',
     }

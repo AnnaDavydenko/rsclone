@@ -90,6 +90,7 @@ const useStyles = makeStyles({
         margin: '25px auto',
         justifyContent: 'center',
         textAlign: 'center',
+        borderRadius: '7px',
         '& tbody': {
             display: 'block',
             height: '100%',

@@ -4,7 +4,7 @@ import friend from "../assets/img/plane/friend.png";
 import enemy from "../assets/img/plane/enemy.png";
 import playerBullet from "../assets/img/playerBullet.png";
 import enemyBullet from "../assets/img/enemyBullet.png";
-import fuel2 from "../assets/img/fuel2.png";
+import fuel2 from "../assets/img/fuel-station.png";
 import star_1 from "../assets/img/star/star_1.png";
 import star_2 from "../assets/img/star/star_2.png";
 import star_3 from "../assets/img/star/star_3.png";

@@ -14,10 +14,11 @@ const Message = (props: IMessage) => {
 
 const useStyles = makeStyles({
     root: {
-        fontSize: '1rem',
-        lineHeight: '2',
         margin: '0 auto',
-        textAlign: 'justify',
+        fontSize: '1rem',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 

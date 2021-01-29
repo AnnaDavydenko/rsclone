@@ -1,12 +1,6 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Column from '../components/Column';
-import Button from '../components/Button';
-import Message from '../components/Message';
-import { res } from '../utils/res';
-import { SCENES } from '../App';
 import { Typography } from '@material-ui/core';
-import List from '@material-ui/core/List';
 import li from './../assets/img/li.png'
 import wasd from './../assets/img/was.png'
 import spacebar from './../assets/img/spacebar.png'
@@ -15,7 +9,6 @@ import pm from './../assets/img/pm.png'
 const GameRules = () => {
 
     const classes = useStyles({});
-
 
     return (
         <div className={classes.gameRulesContainer} >
@@ -34,7 +27,6 @@ const GameRules = () => {
                     <li>Press P to pause the game, press M to mute.</li>
                     <img src={pm} className={classes.pm} />
                 </ul>
-                    Start your Star Wars!
             </div>
         </div>
     );
@@ -45,8 +37,10 @@ const useStyles = makeStyles({
         whiteSpace: 'pre-line',
         color: '#ced8e6',
         fontFamily: 'Cinzel',
-        background: 'linear-gradient(180deg, rgb(23 51 98) 0%, rgb(70 113 166) 100%)',
+        fontWeight: 500,
+        background: 'linear-gradient(180deg, rgb(23 51 98 / 65%) 0%, rgb(70 113 166 / 54%) 100%)',
         border: '1px solid #068687',
+        borderRadius: '7px',
         padding: '10px 1px',
         boxShadow: '3px -3px 5px 2px #108182',
 
@@ -54,7 +48,7 @@ const useStyles = makeStyles({
             display: 'flex',
             alignItems: 'center',
             marginBottom: '10px',
-            borderRadius: '7px',
+
             '&:before': {
                 content: '""',
                 display: 'inline-block',

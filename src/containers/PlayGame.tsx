@@ -1,16 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
-// import { Play } from '../scenes/play';
+import React, { useEffect } from 'react';
 import { Play } from '../scenes/play';
-import timeImg from '../assets/img/time3.png';
-import fuelImg from '../assets/img/fuel2.png';
-import scoreImg from '../assets/img/score.png';
+import time from '../assets/img/time3.png';
+import fuel from '../assets/img/fuel-station.png';
+import score from '../assets/img/score.png';
 import playerBulletImg from '../assets/img/playerBullet.png';
-import a_plusImg from '../assets/img/a+.png';
-import a_minusImg from '../assets/img/a-.png';
-import muteImg from '../assets/img/mute.png';
-import speakerImg from '../assets/img/speaker.png';
-import playImg from '../assets/img/play.png';
-import pauseImg from '../assets/img/pause.png';
+import zoom_in from '../assets/img/zoom-in.png';
+import zoom_out from '../assets/img/zoom-out.png';
+import mute from '../assets/img/mute.png';
+import unmute from '../assets/img/audio.png';
+import play from '../assets/img/play.png';
+import pause from '../assets/img/pause.png';
 import { config } from '../config/config';
 import { SCENES } from '../App';
 import { IGameData } from '../types/game';
@@ -46,15 +45,15 @@ const PlayGame = (props: IPlay) => {
                 <div className="header">
                     <ul className="info">
                         <li>
-                            <img src={timeImg} alt="time" />
+                            <img src={time} alt="time image" />
                             <span id="time">00</span>
                         </li>
                         <li>
-                            <img src={fuelImg} alt="fuel" />
+                            <img src={fuel} alt="fuel image" />
                             <span id="fuel">00</span>
                         </li>
                         <li>
-                            <img src={scoreImg} alt="score" />
+                            <img src={score} alt="score image" />
                             <span id="score">00</span>
                         </li>
                         <li>
@@ -64,18 +63,18 @@ const PlayGame = (props: IPlay) => {
                     </ul>
                     <ul className="option">
                         <li id="game-font-size-add">
-                            <img className="pause" src={a_plusImg} alt="time" />
+                            <img className="pause" src={zoom_in} alt="text zoom in" />
                         </li>
                         <li id="game-font-size-reduce">
-                            <img className="pause" src={a_minusImg} alt="time" />
+                            <img className="pause" src={zoom_out} alt="text zoom out" />
                         </li>
                         <li id="game-mute-btn">
-                            <img className="pause" src={muteImg} alt="time" />
-                            <img className="pause" src={speakerImg} alt="time" />
+                            <img className="pause" src={mute} alt="mute image" />
+                            <img className="pause" src={unmute} alt="unmute image" />
                         </li>
                         <li id="game-pause-btn">
-                            <img className="pause" src={playImg} alt="time" />
-                            <img className="pause" src={pauseImg} alt="time" />
+                            <img className="pause" src={play} alt="play image" />
+                            <img className="pause" src={pause} alt="pause image" />
                         </li>
                     </ul>
                 </div>
