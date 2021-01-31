@@ -130,6 +130,7 @@ export const config: any = (() => {
 
     config.data = () => {
         return {
+            level: 1,
             fuel: 15,
             score: 0,
             shoot: 0,

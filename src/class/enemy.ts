@@ -3,7 +3,7 @@ import {config} from '../config/config';
 import {random} from '../utils/utils';
 
 export class Enemy extends Plane{
-    
+
     setup() {
         const { w, h } = config.game;
         super.setup('enemy');
@@ -13,7 +13,10 @@ export class Enemy extends Plane{
 
     update() {
         if (this.run) {
-            this.move();  
+            if (this.scene.game.data.score % 10 === 0) {
+                this.speed -= 1;
+            }
+            this.move();
             if (this.isEnter()) {
                 this.fire();
             }

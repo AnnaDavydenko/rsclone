@@ -17,5 +17,6 @@ export const ru = {
         'Scores': 'Очки',
         'Seconds': 'Секунды',
         'Your name': 'Ваше имя',
+        'Total playing time': 'Игровое время',
     },
 };

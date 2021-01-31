@@ -215,28 +215,28 @@ export const incrementAnimation = (start: number, end: number, callback: any) =>
             clearInterval(time);
         }
     }, 30)
-}
+};
 
 export const localStorageData = (() => {
-
 
     const add = (key: string, obj: IStorageData) => {
         const item = get(key);
         item.data.push(obj);
         localStorage.setItem(key, JSON.stringify(item));
-    }
+    };
 
     const get = (key: string) => {
         return JSON.parse((localStorage.getItem(key) as string)) || {
             data: [],
         };
-    }
+    };
 
     const update = (key: string, data: Array<IStorageData>) => {
         localStorage.setItem(key, JSON.stringify({
             data,
         }));
-    }
+    };
+
     return {
         add: add,
         get: get,

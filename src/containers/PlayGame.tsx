@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Play } from '../scenes/play';
 import time from '../assets/img/time3.png';
 import fuel from '../assets/img/fuel-station.png';
@@ -13,6 +13,7 @@ import pause from '../assets/img/pause.png';
 import { config } from '../config/config';
 import { SCENES } from '../constant';
 import { IGameData } from '../types/game';
+import UserGuide from '../components/UserGuide';
 
 interface IPlay {
     gameData: IGameData;
@@ -22,6 +23,9 @@ interface IPlay {
 
 const PlayGame = (props: IPlay) => {
     const { gameData, onGameUpdate, onSceneChange } = props;
+
+    const [userGuideOpen, setUserGuideOpen] = useState<boolean>(true);
+    const [gameScene, setScene] = useState();
 
     useEffect(() => {
         const data = { ...config.data(), end: false };
@@ -36,7 +40,20 @@ const PlayGame = (props: IPlay) => {
         });
         scene.show();
         scene.setup();
+        scene.pause();
+        scene.mute();
+        // @ts-ignore
+        setScene(scene);
+        setUserGuideOpen(true);
     }, [onGameUpdate, onSceneChange]);
+
+    const handleCloseGuide = useCallback(() => {
+        setUserGuideOpen(false);
+        // @ts-ignore
+        gameScene.start();
+        // @ts-ignore
+        gameScene.speak();
+    }, [gameScene]);
 
     return (
         <div id="play" className="absolute">
@@ -61,6 +78,12 @@ const PlayGame = (props: IPlay) => {
                             <span id="shoot">00</span>
                         </li>
                     </ul>
+                    <ul className="info">
+                        <li>
+                            <img src={time} alt="time image" />
+                            <span id="level">01</span>
+                        </li>
+                    </ul>
                     <ul className="option">
                         <li id="game-font-size-add">
                             <img className="pause" src={zoom_in} alt="text zoom in" />
@@ -69,8 +92,8 @@ const PlayGame = (props: IPlay) => {
                             <img className="pause" src={zoom_out} alt="text zoom out" />
                         </li>
                         <li id="game-mute-btn">
-                            <img className="pause" src={mute} alt="mute image" />
                             <img className="pause" src={unmute} alt="unmute image" />
+                            <img className="pause" src={mute} alt="mute image" />
                         </li>
                         <li id="game-pause-btn">
                             <img className="pause" src={play} alt="play image" />
@@ -79,6 +102,7 @@ const PlayGame = (props: IPlay) => {
                     </ul>
                 </div>
             </div>
+            <UserGuide open={userGuideOpen} handleClose={handleCloseGuide} />
         </div>
     );
 };

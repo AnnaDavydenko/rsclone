@@ -387,6 +387,12 @@ export class Play extends Scene {
         const call = () => {
             if(score){
                 score.innerHTML = `${numberFormat(game.data.score)}`;
+                if (game.data.score>10) {
+                    game.data.level += 1;
+                    const level = $('#level');
+                    // @ts-ignore
+                    level.innerHTML = `${numberFormat(game.data.level)}`;
+                }
             }
         }
         if (num === 0) {

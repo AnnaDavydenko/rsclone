@@ -17,5 +17,6 @@ export const en = {
         'Scores': 'Scores',
         'Seconds': 'Seconds',
         'Your name': 'Your name',
+        'Total playing time': 'Total playing time',
     },
 };

@@ -1,6 +1,7 @@
 import { Element as ElementClass } from '../class/element';
 
 export interface IGameData {
+    level: number;
     fuel: number;
     score: number;
     shoot: number;
