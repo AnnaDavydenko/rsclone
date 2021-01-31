@@ -5,26 +5,28 @@ import li from './../assets/img/li.png'
 import wasd from './../assets/img/was.png'
 import spacebar from './../assets/img/spacebar.png'
 import pm from './../assets/img/pm.png'
+import { useTranslation } from 'react-i18next';
 
 const GameRules = () => {
 
     const classes = useStyles({});
+    const { t, i18n  } = useTranslation();
 
     return (
         <div className={classes.gameRulesContainer} >
             <Typography variant="h2" className={classes.title}>
-                Game Rules
+                {t("Game Rules")}
             </Typography>
             <div>
                 <ul className={classes.ulist}>
                     <img src={wasd} className={classes.wasd} /><img src={spacebar} className={classes.spacebar} />
-                    <li>Use W, A, S, D to control the spacecraft and press Space to launch.</li>
-                    <li>The initial fuel value is 15, and it decreases by 1 point per second. When the fuel value is 0, the game ends.</li>
-                    <li>Touching a dropped fuel bottle can add 15 points, with a maximum of 30 points.</li>
-                    <li>Hit the enemy ship to get 5 points. The planet needs to be hit twice, this will add 10 points. 10 points are deducted for hitting a friendly team.</li>
-                    <li>The enemy loses 15 fuel points and 10 points are deducted from the friendly collision.</li>
-                    <li>The game allows negative points.</li>
-                    <li>Press P to pause the game, press M to mute.</li>
+                    <li>{t('Use W, A, S, D')}</li>
+                    <li>{t('The initial fuel value')}</li>
+                    <li>{t('Touching a dropped fuel')}</li>
+                    <li>{t('Hit the enemy')}</li>
+                    <li>{t('The enemy loses')}</li>
+                    <li>{t('The game allows negative points')}</li>
+                    <li>{t('Press P')}</li>
                     <img src={pm} className={classes.pm} />
                 </ul>
             </div>

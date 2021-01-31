@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Column from '../components/Column';
 import Button from '../components/Button';
-import { SCENES } from '../App';
+import { SCENES } from '../constant';
 import { localStorageData, numberFormat } from '../utils/utils';
 import { IGameData } from '../types/game';
+import { useTranslation } from 'react-i18next';
 
 interface IRank {
     onGameStatusChange: (isFinished: boolean) => void;
@@ -16,6 +16,7 @@ export const storageDataKey = 'gameData';
 const Rank = (props: IRank) => {
     const { onGameStatusChange, onSceneChange } = props;
     const classes = useStyles({});
+    const { t, i18n  } = useTranslation();
 
     const handleRestart = useCallback(() => {
         onGameStatusChange(false);
@@ -29,12 +30,12 @@ const Rank = (props: IRank) => {
     return (
         <div id="rank" className={classes.absolute}>
             <table className={classes.scroll}>
-                <thead>
+                <thead className={classes.tableHeader}>
                     <tr>
-                        <th>Ranking</th>
-                        <th>Name</th>
-                        <th>Scores</th>
-                        <th>Seconds</th>
+                        <th>{t('Ranking')}</th>
+                        <th>{t('Name')}</th>
+                        <th>{t('Scores')}</th>
+                        <th>{t('Seconds')}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,7 +47,7 @@ const Rank = (props: IRank) => {
                             position++;
                         }
                         return (
-                            <tr key={index}>
+                            <tr key={index} >
                                 <td>{numberFormat(position)}</td>
                                 <td>{gameResult.name}</td>
                                 <td>{numberFormat(gameResult.score)}</td>
@@ -80,6 +81,9 @@ const useStyles = makeStyles({
         height: '100%',
         textAlign: 'center',
     },
+    tableHeader: {
+        fontSize: '18px',
+    },
     scroll: {
         height: 'calc(100% - 120px)',
         overflow: 'hidden',
@@ -91,6 +95,9 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         textAlign: 'center',
         borderRadius: '7px',
+        border: '2px solid #150304',
+        padding: '10px',
+        fontFamily: 'Cinzel',
         '& tbody': {
             display: 'block',
             height: '100%',
@@ -98,7 +105,7 @@ const useStyles = makeStyles({
             paddingBottom: '8px',
         },
         '& tbody::-webkit-scrollbar': {
-            width: '2px',
+            width: '3px',
         },
         '& thead, tbody tr': {
             display: 'table',
@@ -117,7 +124,7 @@ const useStyles = makeStyles({
         },
         '& tbody::-webkit-scrollbar-thumb': {
             borderRadius: '10px',
-            background: 'rgba(255,255,255,0.5)',
+            background: '#ffa96cc9',
             boxShadow: 'inset 0 0 6px rgba(0,0,0,0.5)',
         },
     },

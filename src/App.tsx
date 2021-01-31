@@ -3,6 +3,8 @@ import Start from './containers/Start';
 import PlayGame from './containers/PlayGame';
 import Over from './containers/Over';
 import Rank from './containers/Rank';
+import {SCENES} from './constant';
+import {LANGUAGE} from './constant';
 import { makeStyles } from '@material-ui/core/styles';
 import { IGameData } from './types/game';
 import { config } from './config/config';
@@ -12,22 +14,11 @@ import background3 from './assets/img/5.png';
 import background4 from './assets/img/26.png';
 import './style.css';
 import './common.css';
-
-export const SCENES = {
-    START: 'start',
-    PLAY: 'play',
-    OVER: 'over',
-    RANK: 'rank',
-};
-interface IStyleParams {
-    scene: string;
-    showGameRules:boolean;
-}
+import { updateLanguage } from './i18n';
 
 function App() {
-
     const [imageLoaded, setImageLoaded] = useState<boolean>(false);
-    const [scene, setScene] = useState<string>(SCENES.OVER);
+    const [scene, setScene] = useState<string>(SCENES.START);
     const [gameData, setGameData] = useState<IGameData>({ ...config.data(), end: false });
     const [showGameRules, setShowGameRules] = useState<boolean>(false);
 
@@ -44,7 +35,7 @@ function App() {
             image = background3;
         }
         return image;
-    }, [scene, showGameRules]);
+    }, [showGameRules, scene]);
 
     const handleSceneChange = useCallback((scene: string) => {
         setScene(scene);
@@ -70,7 +61,13 @@ function App() {
     return (
         <>
             <div id="app" className={classes.app}>
-                {scene === SCENES.START && <Start onSceneChange={handleSceneChange} handleGameRules={handleGameRules} showGameRules={showGameRules} />}
+                {scene === SCENES.START && (
+                    <Start
+                        onSceneChange={handleSceneChange}
+                        handleGameRules={handleGameRules}
+                        showGameRules={showGameRules}
+                    />
+                )}
                 {scene === SCENES.PLAY && (
                     <div id="container" className={classes.absolute}>
                         <PlayGame gameData={gameData} onGameUpdate={updateGame} onSceneChange={handleSceneChange} />
@@ -97,7 +94,7 @@ const useStyles = makeStyles({
     fakeImage: {
         display: 'none',
     },
-    app: ({backgroundImage, imageLoaded}: any) => ({
+    app: ({backgroundImage, imageLoaded}: {backgroundImage: string, imageLoaded: boolean}) => ({
         backgroundImage: imageLoaded ?  `url(${backgroundImage})` : 'initial',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',

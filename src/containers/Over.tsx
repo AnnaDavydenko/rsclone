@@ -1,16 +1,16 @@
 import React, { useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Column from '../components/Column';
 import Button from '../components/Button';
 import Message from '../components/Message';
 import { IGameData } from '../types/game';
-import { SCENES } from '../App';
+import { SCENES } from '../constant';
 import { localStorageData, numberFormat } from '../utils/utils';
 import { storageDataKey } from './Rank';
 import playerBullet from '../assets/img/playerBullet.png';
 import score from '../assets/img/score.png';
 import time from '../assets/img/time3.png';
-import { OutlinedInputProps, TextField } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 interface IOver {
     gameData: IGameData;
@@ -22,6 +22,7 @@ const Over = (props: IOver) => {
     const classes = useStyles({});
 
     const [name, setName] = useState<string>('');
+    const { t, i18n  } = useTranslation();
 
     const handleSubmit = useCallback(() => {
         const { score, time } = gameData;
@@ -58,8 +59,15 @@ const Over = (props: IOver) => {
             </div>
 
             <form className={classes.inputContainer} noValidate autoComplete="off">
-                <TextField id="outlined-basic" label="Your name" variant="outlined"
-                           InputProps={{ classes: { input: classes.input } }}
+                <TextField id="outlined-basic" label={t('Your name')} variant="outlined"
+                           InputProps={{
+                               classes: {
+                                   root: classes.cssOutlinedInput,
+                                   input: classes.input,
+                                   notchedOutline: classes.notchedOutline,
+                                   focused: classes.cssFocused,
+                               },
+                           }}
                            InputLabelProps={{
                                classes: {
                                    root: classes.label,
@@ -71,7 +79,7 @@ const Over = (props: IOver) => {
             </form>
 
             <Button id="submit-btn" disabled={!name} onClick={handleSubmit}>
-                Continue
+                {t('Continue')}
             </Button>
         </div>
     );
@@ -99,17 +107,23 @@ const useStyles = makeStyles({
         color: "#eff4fb",
         fontSize: '20px',
     },
+    cssOutlinedInput: {
+        "&$cssFocused $notchedOutline": {
+            borderColor: "#ca875b" //focused
+        }
+    },
     label: {
         color: '#ca875b',
         fontSize: '16px',
         "&$focusedLabel": {
             color: "#ca875b",
         },
-        "&$erroredLabel": {
-            color: "orange"
-        }
     },
     focusedLabel: {},
+    notchedOutline: {
+        border: '2px solid #360809',
+    },
+    cssFocused: {},
 });
 
 export default Over;

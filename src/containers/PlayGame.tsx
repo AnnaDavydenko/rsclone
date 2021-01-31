@@ -11,7 +11,7 @@ import unmute from '../assets/img/audio.png';
 import play from '../assets/img/play.png';
 import pause from '../assets/img/pause.png';
 import { config } from '../config/config';
-import { SCENES } from '../App';
+import { SCENES } from '../constant';
 import { IGameData } from '../types/game';
 
 interface IPlay {
