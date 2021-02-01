@@ -4,14 +4,11 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-
 import time from '../assets/img/time3.png';
 import fuel from '../assets/img/fuel-station.png';
 import score from '../assets/img/score.png';
@@ -22,6 +19,7 @@ import mute from '../assets/img/mute.png';
 import unmute from '../assets/img/audio.png';
 import play from '../assets/img/play.png';
 import pause from '../assets/img/pause.png';
+import level from '../assets/img/level.png';
 import { useTranslation } from 'react-i18next';
 
 interface IProps {
@@ -44,6 +42,10 @@ const tutorialSteps = [
     {
         label: 'Number of defeated opponents',
         imgPath:`${playerBulletImg}`,
+    },
+    {
+        label: 'Game level',
+        imgPath:`${level}`,
     },
     {
         label: 'Increase text in the game',
@@ -75,14 +77,8 @@ const UserGuide = (props: IProps) => {
 const {open, handleClose} = props;
     const classes = useStyles({});
     const theme = useTheme();
-    // const [open, setOpen] = React.useState(false);
-    //
-    // const handleClickOpen = () => {
-    //     setOpen(true);
-    // };
     const { t, i18n  } = useTranslation();
     const [activeStep, setActiveStep] = React.useState(0);
-    const maxSteps = tutorialSteps.length;
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -121,23 +117,22 @@ const {open, handleClose} = props;
                         className={classes.root}
                         nextButton={
                             <Button className={classes.button} size="small" onClick={handleNext} disabled={activeStep === 5}>
-                                Next
+                                {t('Next')}
                                 {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                             </Button>
                         }
                         backButton={
                             <Button className={classes.button} size="small" onClick={handleBack} disabled={activeStep === 0}>
                                 {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-                                Back
+                                {t('Back')}
                             </Button>
                         }
                     />
                 </div>
             </DialogContent>
-
             <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                    Close
+                <Button className={classes.buttonClose} onClick={handleClose} color="primary">
+                    {t('Close')}
                 </Button>
             </DialogActions>
         </Dialog>
@@ -151,14 +146,14 @@ const useStyles = makeStyles(() =>
             background: '#37364429',
         },
         root: {
-            background: '#37364429',
+            background: '#37364400',
             color: '#ced8e6',
         },
         header: {
             display: 'flex',
             alignItems: 'center',
             height: 50,
-            background: '#37364429',
+            background: '#37364400',
         },
         headerText: {
             fontFamily: 'Cinzel',
@@ -176,6 +171,10 @@ const useStyles = makeStyles(() =>
         img: {},
         button: {
             color: '#ced8e6',
+            fontFamily: 'Cinzel',
+        },
+        buttonClose: {
+            fontFamily: 'Cinzel',
         },
     }),
 );

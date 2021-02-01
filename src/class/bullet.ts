@@ -1,13 +1,13 @@
 import {Animation} from './animation';
 import {Element} from './element';
 import {config} from '../config/config';
+import { Play } from '../scenes/play';
 
 export class Bullet extends Element {
     private deathAnimation: Animation | null;
     private readonly speed: number;
 
-    // todo: type
-    constructor(props: any) {
+    constructor(props: Play) {
         super(props);
         this.deathAnimation = null;
         this.speed = 0;
@@ -29,7 +29,6 @@ export class Bullet extends Element {
         this.x += this.speed;
     }
 
-    // @ts-ignore
     deathing() {
         this.deathAnimation?.play({
             x: this.x,

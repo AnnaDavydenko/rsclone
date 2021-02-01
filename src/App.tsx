@@ -70,7 +70,7 @@ function App() {
                 )}
                 {scene === SCENES.PLAY && (
                     <div id="container" className={classes.absolute}>
-                        <PlayGame gameData={gameData} onGameUpdate={updateGame} onSceneChange={handleSceneChange} />
+                        <PlayGame onGameUpdate={updateGame} onSceneChange={handleSceneChange} />
                     </div>
                 )}
                 {scene === SCENES.OVER && <Over gameData={gameData} onSceneChange={handleSceneChange} />}

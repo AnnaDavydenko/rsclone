@@ -3,7 +3,7 @@ import { Element } from './element';
 import { Cooldown } from './cooldown';
 import { config } from '../config/config';
 import { Bullet } from './bullet';
-import { Player } from './player';
+import { Play } from '../scenes/play';
 
 export class Plane extends Element {
     private bulletCooldown: Cooldown | null;
@@ -14,8 +14,7 @@ export class Plane extends Element {
     protected isPlayer: boolean | null;
     protected speed: number;
 
-    //todo any types
-    constructor(scene: any) {
+    constructor(scene: Play) {
         super(scene);
         this.bulletCooldown = null;
         this.deathAnimation = null;
@@ -60,21 +59,8 @@ export class Plane extends Element {
         }
         this.canFire = false;
         const bullet = this.scene.factory(this.bullet);
-        // const isPlayer = isPlayer(this);
         bullet.x = this.isPlayer ? this.x + this.w : this.x;
         bullet.y = this.y + this.h / 2 - bullet.h / 2;
         this.bullets.push(bullet);
-    }
-
-    deathing() {
-        // @ts-ignore
-        this.deathAnimation?.play({
-            x: this.x,
-            y: this.y,
-            w: this.w,
-            h: this.h,
-        }).end(() => {
-            this.isDeath = true;
-        });
     }
 }

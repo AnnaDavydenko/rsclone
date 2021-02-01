@@ -9,7 +9,7 @@ import { Star } from "../class/star";
 import {$, hotkey, incrementAnimation, numberFormat, raf, on} from "../utils/utils";
 import {res} from "../utils/res";
 import {config, fps} from "../config/config";
-import { IGame, IGameData } from '../types/game';
+import { IGame } from '../types/game';
 import { Bullet } from '../class/bullet';
 
 interface IGameItems {
@@ -154,9 +154,9 @@ export class Play extends Scene {
             cooldown: new Cooldown(config.game.appendStarCooldown),
         };
     }
-//todo
 
-    collision(a: IParticipants, b: IParticipants, callback: any) {
+
+    collision(a: IParticipants, b: IParticipants, callback: (a: IParticipants, b: IParticipants) => void) {
         if (!a.run || !b.run) {
             return;
         }
@@ -241,7 +241,7 @@ export class Play extends Scene {
             this.bulletCollision(bullet, this.enemyBullets, (el: IParticipants) => {
                 el.death();
             });
-            //todo neponyatno
+
             this.bulletCollision(bullet, this.enemys?.arr as Array<Enemy>, (el: IParticipants) => {
                 this.updateScore(
                     el instanceof Meteorite ?
@@ -355,9 +355,8 @@ export class Play extends Scene {
             if (game.data.fuel <= 0) {
                 game.data.end = true;
                 game.over(game.data);
-                //todo undo
             }
-        }
+        };
         if (num === 0) {
             return call();
         }
@@ -372,9 +371,7 @@ export class Play extends Scene {
                 if (game.data.end) {
                     return call();
                 }
-                //todo del comment
-                //game.data.end ?? call();
-            })
+            });
             return;
         }
         game.data.fuel += num;
@@ -383,29 +380,49 @@ export class Play extends Scene {
 
     updateScore(num = 0) {
         const game = this.game;
+        const start = game.data.score;
+        const end = start + num;
         const score = $('#score');
         const call = () => {
-            if(score){
+            if (score) {
+                const levelUpScore = game.data.level * 20;
+                const levelDownScore = (game.data.level - 1) * 20;
                 score.innerHTML = `${numberFormat(game.data.score)}`;
-                if (game.data.score>10) {
+                game.data.levelChanged = false;
+                if (game.data.score > levelUpScore) {
+                    game.data.prevLevel = game.data.level;
                     game.data.level += 1;
-                    const level = $('#level');
-                    // @ts-ignore
-                    level.innerHTML = `${numberFormat(game.data.level)}`;
+                    game.data.levelChanged = true;
+                    this.updateEnemies();
                 }
+                if (game.data.score < levelDownScore) {
+                    game.data.prevLevel = game.data.level;
+                    game.data.level -= 1;
+                    game.data.levelChanged = true;
+                    this.updateEnemies();
+                }
+                const level = $('#level');
+                // @ts-ignore
+                level.innerHTML = `${numberFormat(game.data.level)}`;
             }
-        }
+        };
         if (num === 0) {
             return call();
         }
-        const start = game.data.score;
-        const end = start + num;
         incrementAnimation(start, end, (current: number) => {
             game.data.score = current;
             call();
         })
     }
 
+    // updatelevel() {
+    //     const game = this.game;
+    //     const level = $('#level');
+    //     if(this.game.data.score > 10 && this.scene.game.data.score < 20) {
+    //         game.data.level++;
+    //         level.innerHTML = `${numberFormat(game.data.level)}`;
+    //     }
+    // }
     updateshoot() {
         const game = this.game;
         game.data.shoot++;
@@ -414,12 +431,9 @@ export class Play extends Scene {
             shoot.innerHTML = `${numberFormat(game.data.shoot)}`;
         }
     }
-/// todo!!!!!!!!!!!!!!!!!!!
+
     updateFontSize(){
-        if($('.content .header .info')){
-            // @ts-ignore
-            $('.content .header .info').style.fontSize = config.game.fontSize.val + 'px';
-        }
+        ($('.content .header .info') as HTMLElement).style.fontSize = config.game.fontSize.val + 'px';
     }
 
     initCanvas() {
@@ -429,12 +443,12 @@ export class Play extends Scene {
 
         this.ctx = (this.canvas?.getContext('2d')) as CanvasRenderingContext2D ;
     }
-// todo!!!!!!!!!!!!!!!!!
+
     initPlayer() {
         // @ts-ignore
         this.player = this.factory(Player);
     }
-// todo!!!!!!!!!!!!!!!!!
+
     draw(data: any) {
         this.ctx?.drawImage.apply(this.ctx, data);
     }
@@ -462,10 +476,10 @@ export class Play extends Scene {
     event() {
         const togglePause = ()=>{
             this.pauseFlag ? this.start() : this.pause();
-        }
+        };
         const toggleMute = ()=>{
             this.muteFlag ? this.speak() : this.mute();
-        }
+        };
         const fontSize = (status: boolean)=>{
             let {val} =  config.game.fontSize;
             const { max, min } = config.game.fontSize;
@@ -473,7 +487,7 @@ export class Play extends Scene {
             if (val <= min || val >= max) return;
             config.game.fontSize.val = val;
             this.updateFontSize();
-        }
+        };
         hotkey.reg('p', () => {
             togglePause();
         }, true);
@@ -486,21 +500,21 @@ export class Play extends Scene {
             ()=>{
                 fontSize(true);
             }
-        )
+        );
         on(
             $('#game-font-size-reduce') as Element,
             'click',
             ()=>{
                 fontSize(false);
             }
-        )
+        );
         on(
             $('#game-pause-btn') as Element,
             'click',
             ()=>{
                 togglePause()
             }
-        )
+        );
         on(
             $('#game-mute-btn') as Element,
             'click',

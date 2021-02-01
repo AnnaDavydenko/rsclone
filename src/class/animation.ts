@@ -1,7 +1,6 @@
 import { Cooldown } from './cooldown';
 import { isImage } from '../utils/utils';
 import { res } from '../utils/res';
-import { IImage } from '../types/image';
 import { Scene } from './scene';
 
 export interface IAnimationData {
@@ -31,8 +30,6 @@ export class Animation {
     private len: number;
     private isEnd: boolean;
     private scene: Scene;
-
-//todo types any
 
     constructor(data: IAnimationData, scene: Scene) {
         this.img = (isImage(data.img as HTMLImageElement) ? data.img : res.imageBy(data.img as string)) as HTMLImageElement;
@@ -74,15 +71,13 @@ export class Animation {
         const pos = this.getPos();
         const x = pos.x * this.w;
         const y = pos.y * this.h;
-        // @ts-ignore
         this.scene.draw([
             this.img,
             x, y, this.w, this.h, info.x, info.y, info.w, info.h,
         ]);
     }
 
-    //todo:type
-    end(callback: any) {
+    end(callback: () => void) {
         if (this.index === this.len) {
             this.isEnd = true;
             callback();

@@ -3,6 +3,7 @@ import {isArray, randomArrayItem} from '../utils/utils';
 import {config} from '../config/config';
 import {res} from '../utils/res';
 import { IImage } from '../types/image';
+import { Play } from '../scenes/play';
 
 type IAnimation = IAnimationData & Animation;
 
@@ -27,7 +28,7 @@ export class Element{
     public y: number;
     protected initY: number;
 
-    constructor(scene: any) {
+    constructor(scene: Play) {
         this.scene = scene;
         this.img = null;
         this.run = true;
@@ -122,7 +123,7 @@ export class Element{
             text: this.text,
             x: this.x,
             y : this.y,
-        })
+        });
         if (this.initY - this.y > this.textRise) {
             callback && callback();
         }

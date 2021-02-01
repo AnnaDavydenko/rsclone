@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
-
 import Column from '../components/Column';
 import Button from '../components/Button';
 import { res } from '../utils/res';
@@ -13,7 +12,6 @@ import logo from '../assets/img/download.gif';
 import rus from '../assets/img/russia.png';
 import eng from '../assets/img/uk.png';
 import { updateLanguage } from '../i18n';
-
 
 interface IStart {
     onSceneChange: (scene: string) => void;
@@ -31,7 +29,6 @@ const Start = (props: IStart) => {
         });
     }, [onSceneChange]);
 
-    // @ts-ignore
     const handleLanguageChange = useCallback((lang: string) => () => {
         updateLanguage(lang);
     }, []);
@@ -40,7 +37,6 @@ const Start = (props: IStart) => {
     return (
         <>
             <header className={classes.header}>
-                {/*<Button onClick={handleLanguageChange(LANGUAGE.EN)}>{t("English")}</Button>*/}
                 <div>
                     <div className={classes.languageContainer}>
                         <button className={classes.language} onClick={handleLanguageChange(LANGUAGE.RU)}>
@@ -94,7 +90,6 @@ const useStyles = makeStyles({
         transition: 'all 0.5s ease',
         width: showGameRules ? '40%' :'50%',
     }),
-
     logo:({showGameRules}:{showGameRules:boolean}) => ({
         display: 'flex',
         justifyContent: 'center',
@@ -115,7 +110,6 @@ const useStyles = makeStyles({
         fontSize: showGameRules ? '12px' : '14px',
         transition: 'all 0.5s ease',
     }),
-
     gameRulesBtn: {
         width: '90px',
         height: '90px',

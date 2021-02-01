@@ -10,21 +10,22 @@ import mute from '../assets/img/mute.png';
 import unmute from '../assets/img/audio.png';
 import play from '../assets/img/play.png';
 import pause from '../assets/img/pause.png';
+import level from '../assets/img/level.png';
 import { config } from '../config/config';
 import { SCENES } from '../constant';
 import { IGameData } from '../types/game';
 import UserGuide from '../components/UserGuide';
+import { localStorageData } from '../utils/utils';
 
 interface IPlay {
-    gameData: IGameData;
     onSceneChange: (scene: string) => void;
     onGameUpdate: (updates: IGameData) => void;
 }
 
 const PlayGame = (props: IPlay) => {
-    const { gameData, onGameUpdate, onSceneChange } = props;
+    const { onGameUpdate, onSceneChange } = props;
 
-    const [userGuideOpen, setUserGuideOpen] = useState<boolean>(true);
+    const [userGuideOpen, setUserGuideOpen] = useState<boolean>(false);
     const [gameScene, setScene] = useState();
 
     useEffect(() => {
@@ -44,16 +45,20 @@ const PlayGame = (props: IPlay) => {
         scene.mute();
         // @ts-ignore
         setScene(scene);
-        setUserGuideOpen(true);
+        if (!localStorageData.getUserGuide('guide')){
+            setUserGuideOpen(true);
+            localStorageData.setUserGuide('guide', 'true');
+        } else {
+            launchGame(scene);
+        }
     }, [onGameUpdate, onSceneChange]);
 
     const handleCloseGuide = useCallback(() => {
         setUserGuideOpen(false);
-        // @ts-ignore
-        gameScene.start();
-        // @ts-ignore
-        gameScene.speak();
+        launchGame(gameScene);
     }, [gameScene]);
+
+
 
     return (
         <div id="play" className="absolute">
@@ -80,7 +85,7 @@ const PlayGame = (props: IPlay) => {
                     </ul>
                     <ul className="info">
                         <li>
-                            <img src={time} alt="time image" />
+                            <img src={level} alt="time image" />
                             <span id="level">01</span>
                         </li>
                     </ul>
@@ -105,6 +110,11 @@ const PlayGame = (props: IPlay) => {
             <UserGuide open={userGuideOpen} handleClose={handleCloseGuide} />
         </div>
     );
+};
+
+const launchGame = (scene: any) => {
+    scene.start();
+    scene.speak();
 };
 
 export default PlayGame;

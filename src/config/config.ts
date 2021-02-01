@@ -109,7 +109,6 @@ export const config: any = (() => {
             max : 30,
             val : 16,
         },
-        // random cooldown index 0 - index 1
         appendEnemyCooldown: [2 * fps, 5 * fps],
         appendFriendCooldown : [2*fps,5*fps],
         appendFuelCooldown : [2*fps,5*fps],
@@ -131,6 +130,7 @@ export const config: any = (() => {
     config.data = () => {
         return {
             level: 1,
+            prevLevel: 1,
             fuel: 15,
             score: 0,
             shoot: 0,
@@ -200,12 +200,10 @@ export const config: any = (() => {
                 w: 85,
                 h : 85,
                 x: w + o.w,
-                // x: w + o.w,
                 speed: -2,
                 img : 'friend',
-                //animation : planeAnimation(),
             }
-        })
+        });
 
         return o;
 

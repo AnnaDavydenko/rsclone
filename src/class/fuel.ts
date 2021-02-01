@@ -1,11 +1,11 @@
 import {Plane} from './plane';
 import {random} from '../utils/utils';
 import {config} from '../config/config';
+import { Play } from '../scenes/play';
 
 export class Fuel extends Plane {
 
-    // todo: type
-    constructor(props: any) {
+    constructor(props: Play) {
         super(props);
         this.rotateState = null;
         this.rotateSpeed = 0;

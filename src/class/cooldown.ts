@@ -21,8 +21,8 @@ export class Cooldown{
         (this.cooldown as number)--;
         return this;
     }
-    //todo: types
-    active(callback:any) {
+
+    active(callback: () => void) {
         if (this.cooldown <= 0) {
             this.reset();
             callback();

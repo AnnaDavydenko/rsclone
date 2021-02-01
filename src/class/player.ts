@@ -2,10 +2,11 @@ import {Plane} from './plane';
 import {config} from '../config/config';
 import {hotkey} from '../utils/utils';
 import {res} from '../utils/res';
+import { Play } from '../scenes/play';
 
 export class Player extends Plane {
     protected isPlayer: boolean | null;
-    constructor(props: any) {
+    constructor(props: Play) {
         super(props);
         this.isPlayer = null;
     }
@@ -33,9 +34,9 @@ export class Player extends Plane {
         if (this.y+this.h >= config.game.h) return;
         this.y+=this.speed;
     }
-//todo any
+
     event() {
-        const called = (callback: any) =>{
+        const called = (callback: () => void) =>{
             if (!this.run) return;
             if (this.scene.pauseFlag) return;
             if (this.scene.game.data.end) return;

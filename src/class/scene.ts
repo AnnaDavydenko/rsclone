@@ -12,18 +12,6 @@ export class Scene{
         this.ctx = null;
     }
 
-    created(){
-
-    }
-
-    setup() {
-
-    }
-
-    uninstall(){
-
-    }
-
     show() {
         this.el.classList.add('action');
     }
@@ -31,6 +19,7 @@ export class Scene{
     hidden() {
         this.el.classList.remove('action');
     }
+
     draw (data: any) {
         (this.ctx as CanvasRenderingContext2D).drawImage.apply(this.ctx, data);
     }

@@ -2,12 +2,13 @@ import {Element} from './element';
 import {config} from '../config/config';
 import {random} from '../utils/utils';
 import { IImage } from '../types/image';
+import { Play } from '../scenes/play';
 
 export class Star extends Element {
     protected img: IImage | null;
     private speed: number;
-    // todo: type
-    constructor(props: any) {
+
+    constructor(props: Play) {
         super(props);
         this.img = null;
         this.speed = 0;
@@ -22,8 +23,6 @@ export class Star extends Element {
         this.speed = -this.w * 0.05;
         this.x = w + this.w;
         this.y = random(0, h - this.h);
-        // this.rotateState = true;
-        // this.rotateSpeed = -0.4;
     }
 
     move() {

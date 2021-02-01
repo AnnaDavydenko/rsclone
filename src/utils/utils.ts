@@ -219,6 +219,14 @@ export const incrementAnimation = (start: number, end: number, callback: any) =>
 
 export const localStorageData = (() => {
 
+    const getUserGuide = (key: string) => {
+        return localStorage.getItem(key);
+    };
+
+    const setUserGuide = (key: string, value: string) => {
+        return localStorage.setItem(key, value);
+    };
+
     const add = (key: string, obj: IStorageData) => {
         const item = get(key);
         item.data.push(obj);
@@ -241,6 +249,8 @@ export const localStorageData = (() => {
         add: add,
         get: get,
         update: update,
+        getUserGuide: getUserGuide,
+        setUserGuide: setUserGuide,
     }
 
 })();

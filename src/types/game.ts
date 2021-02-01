@@ -1,6 +1,8 @@
 import { Element as ElementClass } from '../class/element';
 
 export interface IGameData {
+    levelChanged: boolean;
+    prevLevel: number;
     level: number;
     fuel: number;
     score: number;
