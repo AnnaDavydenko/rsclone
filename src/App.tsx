@@ -4,7 +4,6 @@ import PlayGame from './containers/PlayGame';
 import Over from './containers/Over';
 import Rank from './containers/Rank';
 import {SCENES} from './constant';
-import {LANGUAGE} from './constant';
 import { makeStyles } from '@material-ui/core/styles';
 import { IGameData } from './types/game';
 import { config } from './config/config';
@@ -12,9 +11,10 @@ import background from './assets/img/25.png';
 import background1 from './assets/img/1268307.png';
 import background3 from './assets/img/5.png';
 import background4 from './assets/img/26.png';
+import RSSchool from './assets/img/rs_school_js.png';
 import './style.css';
 import './common.css';
-import { updateLanguage } from './i18n';
+import Footer from './components/Footer';
 
 function App() {
     const [imageLoaded, setImageLoaded] = useState<boolean>(false);
@@ -77,12 +77,7 @@ function App() {
                 {scene === SCENES.RANK && <Rank onSceneChange={handleSceneChange} onGameStatusChange={updateGameStatus} />}
             </div>
             <img className={classes.fakeImage} src={backgroundImage} alt="fake bg" onLoad={handleBackgroundLoad} />
-            <footer className={classes.footer}>
-                <span>
-                    Created by
-                    <a href="https://github.com/AnnaDavydenko">GitHub</a>
-                </span>
-            </footer>
+            {scene === SCENES.START && !showGameRules && <Footer />}
         </>
     );
 }
@@ -102,9 +97,6 @@ const useStyles = makeStyles({
         boxShadow: '5px 5px 10px -5px #000',
         overflow: 'hidden',
     }),
-    footer: {
-        display: 'none',
-    }
 });
 
 export default App;

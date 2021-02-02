@@ -32,5 +32,6 @@ export const ru = {
         'Next': 'ВПЕРЕД',
         'Back': 'НАЗАД',
         'Close': 'ЗАКРЫТЬ',
+        'Created by': 'СОЗДАНО',
     },
 };

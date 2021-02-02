@@ -7,7 +7,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import time from '../assets/img/time3.png';
 import fuel from '../assets/img/fuel-station.png';
@@ -21,10 +20,20 @@ import play from '../assets/img/play.png';
 import pause from '../assets/img/pause.png';
 import level from '../assets/img/level.png';
 import { useTranslation } from 'react-i18next';
+import Paper, { PaperProps } from '@material-ui/core/Paper';
+import Draggable from 'react-draggable';
+import { DialogTitle } from '@material-ui/core';
 
 interface IProps {
     open: boolean;
     handleClose: () => void;
+}
+function PaperComponent(props: PaperProps) {
+    return (
+        <Draggable handle="#draggable-dialog-title" cancel={'[class*="MuiDialogContent-root"]'}>
+            <Paper {...props} />
+        </Draggable>
+    );
 }
 const tutorialSteps = [
     {
@@ -93,10 +102,11 @@ const {open, handleClose} = props;
             open={open}
             classes={{ paper: classes.paper }}
             onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
+            PaperComponent={PaperComponent}
+            aria-labelledby="draggable-dialog-title"
         >
-
+            <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+            </DialogTitle>
             <DialogContent>
                 <div className={classes.root}>
                     <Paper square elevation={0} className={classes.header}>
@@ -111,12 +121,12 @@ const {open, handleClose} = props;
                     </div>
                     <MobileStepper
                         variant="dots"
-                        steps={6}
+                        steps={11}
                         position="static"
                         activeStep={activeStep}
                         className={classes.root}
                         nextButton={
-                            <Button className={classes.button} size="small" onClick={handleNext} disabled={activeStep === 5}>
+                            <Button className={classes.button} size="small" onClick={handleNext} disabled={activeStep === 10}>
                                 {t('Next')}
                                 {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                             </Button>

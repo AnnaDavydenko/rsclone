@@ -32,5 +32,6 @@ export const en = {
         'Next': 'Next',
         'Back': 'Back',
         'Close': 'Close',
+        'Created by': 'Created by',
     },
 };
