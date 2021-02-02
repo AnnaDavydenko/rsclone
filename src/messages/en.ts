@@ -11,6 +11,7 @@ export const en = {
         'The enemy loses': 'The enemy loses 15 fuel points and 10 points are deducted from the friendly collision.',
         'The game allows negative points': 'The game allows negative points.',
         'Press P': 'Press P to pause the game, press M to mute.',
+        'To move to a new level, you need to add 21 points': 'To move to a new level, you need to add 21 points.',
         'Continue': 'Continue',
         'Ranking': 'Ranking',
         'Name': 'Name',

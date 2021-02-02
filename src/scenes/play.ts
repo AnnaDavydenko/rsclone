@@ -119,12 +119,8 @@ export class Play extends Scene {
 
 
     initData() {
-
         this.pauseFlag = false;
-// !todo [fps]
         this.timeCooldown = new Cooldown(fps as any, true);
-
-
         this.playerBullets = [];
         this.enemyBullets = [];
         this.allEnemys = [];
@@ -402,8 +398,9 @@ export class Play extends Scene {
                     this.updateEnemies();
                 }
                 const level = $('#level');
-                // @ts-ignore
-                level.innerHTML = `${numberFormat(game.data.level)}`;
+                if(level){
+                    level.innerHTML = `${numberFormat(game.data.level)}`;
+                }
             }
         };
         if (num === 0) {
@@ -415,14 +412,6 @@ export class Play extends Scene {
         })
     }
 
-    // updatelevel() {
-    //     const game = this.game;
-    //     const level = $('#level');
-    //     if(this.game.data.score > 10 && this.scene.game.data.score < 20) {
-    //         game.data.level++;
-    //         level.innerHTML = `${numberFormat(game.data.level)}`;
-    //     }
-    // }
     updateshoot() {
         const game = this.game;
         game.data.shoot++;

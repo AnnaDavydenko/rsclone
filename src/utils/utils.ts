@@ -1,6 +1,3 @@
-import {Player} from "../class/player";
-import { IElement } from '../types/game';
-
 type IElementEvent = {
     callback: any,
     once: boolean,
@@ -29,11 +26,11 @@ export const style = (el: HTMLElement, styleObj: {width: string, height: string}
     for (const i in styleObj) {
         el.style[i] = styleObj[i];
     }
-}
+};
 
 export const on = (el: Element | Window, type: string, callback: any) => {
     el.addEventListener(type, callback);
-}
+};
 
 export const numberFormat = (num: number) => {
     const isPlus = num >= 0;
@@ -52,15 +49,11 @@ export const randomArrayItem = (array: Array<any>) => {
 
 export const isArray = (array: Array<number>) => {
     return array instanceof Array;
-}
+};
 
 export const isImage = (img: HTMLImageElement) => {
     return img instanceof Image;
-}
-
-// export const isPlayer = (player) => {
-//     return player instanceof Player;
-// }
+};
 
 export const raf = (() => {
 
@@ -87,7 +80,7 @@ export const raf = (() => {
             (fn as () => void)();
         }
         requestAnimationFrame(update);
-    }
+    };
 
     update();
 
@@ -108,7 +101,7 @@ export const hotkey = (() => {
             active: false,
             events: [],
         }
-    }
+    };
 
     const loop = () => {
         for (const key of Object.keys(data)) {
@@ -194,7 +187,7 @@ export const loadResource = (list: any, Obj: any, callback: any) => {
             call(obj, key)
         };
     });
-}
+};
 
 export const loadImages = (images: any, callback: any) => {
     return loadResource(images, Image, callback);

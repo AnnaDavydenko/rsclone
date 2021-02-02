@@ -114,8 +114,8 @@ export class Element{
         }
         this.scene.draw(this.getDrawInfo());
     }
-//todo types any
-    drawText(callback: any) {
+
+    drawText(callback: () => void) {
         this.setInitY();
         this.scene.setFontStyle();
         this.y--;

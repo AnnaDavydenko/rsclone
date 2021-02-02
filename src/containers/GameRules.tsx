@@ -25,6 +25,7 @@ const GameRules = () => {
                     <li>{t('Touching a dropped fuel')}</li>
                     <li>{t('Hit the enemy')}</li>
                     <li>{t('The enemy loses')}</li>
+                    <li>{t('To move to a new level, you need to add 21 points')}</li>
                     <li>{t('The game allows negative points')}</li>
                     <li>{t('Press P')}</li>
                     <img src={pm} className={classes.pm} />
