@@ -1,14 +1,14 @@
-import { Scene } from "../class/scene";
-import { Cooldown } from "../class/cooldown";
-import { Enemy } from "../class/enemy";
-import { Friend } from "../class/friend";
-import { Fuel } from "../class/fuel";
-import { Meteorite } from "../class/meteorite";
-import { Player } from "../class/player";
-import { Star } from "../class/star";
-import {$, hotkey, incrementAnimation, numberFormat, raf, on} from "../utils/utils";
-import {res} from "../utils/res";
-import {config, fps} from "../config/config";
+import { Scene } from '../class/scene';
+import { Cooldown } from '../class/cooldown';
+import { Enemy } from '../class/enemy';
+import { Friend } from '../class/friend';
+import { Fuel } from '../class/fuel';
+import { Meteorite } from '../class/meteorite';
+import { Player } from '../class/player';
+import { Star } from '../class/star';
+import {$, hotkey, incrementAnimation, numberFormat, raf, on} from '../utils/utils';
+import {res} from '../utils/res';
+import {config, fps} from '../config/config';
 import { IGame } from '../types/game';
 import { Bullet } from '../class/bullet';
 
@@ -52,7 +52,7 @@ export class Play extends Scene {
     constructor(el: string, game: IGame){
         super(el,game);
         this.created();
-        this.raf_id = "";
+        this.raf_id = '';
         this.muteFlag = null;
         this.pauseFlag = null;
         this.timeCooldown = null;
@@ -80,7 +80,7 @@ export class Play extends Scene {
         this.updateFuel();
         this.updateScore();
         this.updateFontSize();
-        $("#logo")?.classList.add('play-status');
+        $('#logo')?.classList.add('play-status');
         this.event();
         this.start();
     }
@@ -113,7 +113,7 @@ export class Play extends Scene {
     uninstall() {
         raf.remove(this.raf_id);
         res.end('bg');
-        $("#logo")?.classList.remove('play-status');
+        $('#logo')?.classList.remove('play-status');
         hotkey.clearAll();
     }
 
@@ -266,7 +266,7 @@ export class Play extends Scene {
         const {
             beingHit
         } = config.fuelConfig;
-        this.updateing((this.enemys?.arr as Array<Enemy>), (enemy: IParticipants) => {
+        this.updateing(this.enemys?.arr as Array<Enemy>, (enemy: IParticipants) => {
             this.playerCollision(enemy, () => {
                 this.updateScore(
                     enemy instanceof Meteorite ?
@@ -422,7 +422,8 @@ export class Play extends Scene {
     }
 
     updateFontSize(){
-        ($('.content .header .info') as HTMLElement).style.fontSize = config.game.fontSize.val + 'px';
+        const elem =  $('.content .header .info') as HTMLElement;
+        elem.style.fontSize = config.game.fontSize.val + 'px';
     }
 
     initCanvas() {
@@ -450,7 +451,7 @@ export class Play extends Scene {
         this.ctx?.restore();
     }
 
-    setFontStyle(font = "20px Arial", yellow = "yellow") {
+    setFontStyle(font = '20px Arial', yellow = 'yellow') {
         if(this.ctx){
             this.ctx.font = font;
             this.ctx.fillStyle = yellow;
@@ -472,7 +473,7 @@ export class Play extends Scene {
         const fontSize = (status: boolean)=>{
             let {val} =  config.game.fontSize;
             const { max, min } = config.game.fontSize;
-            val += (status ? 1 : -1);
+            val += status ? 1 : -1;
             if (val <= min || val >= max) return;
             config.game.fontSize.val = val;
             this.updateFontSize();

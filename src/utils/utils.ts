@@ -16,8 +16,6 @@ type IStorageData = {
     time: number,
 }
 
-export const log = console.log.bind(console);
-
 export const $ = (elem: string ) => document.querySelector(elem);
 
 export const $s = (elem: string) => document.querySelectorAll(elem);
@@ -61,7 +59,7 @@ export const raf = (() => {
 
     const reg = (id: string, callback: any) => {
         if (events[id]) {
-            return console.error('id existed');
+            return;
         }
         events[id] = callback;
     };
@@ -77,7 +75,8 @@ export const raf = (() => {
 
     const update = () => {
         for (const fn of Object.values(events)) {
-            (fn as () => void)();
+            const fcall = fn as () => void;
+            fcall();
         }
         requestAnimationFrame(update);
     };
@@ -147,7 +146,7 @@ export const hotkey = (() => {
 
     return {
         reg: (keyCode: string, callback: any, once = false) => {
-            keyCode = "" + keyCode;
+            keyCode = '' + keyCode;
             keyCode = keyCode.toLocaleUpperCase();
             if (!data[keyCode]) {
                 regKeyCode(keyCode);
@@ -227,7 +226,7 @@ export const localStorageData = (() => {
     };
 
     const get = (key: string) => {
-        return JSON.parse((localStorage.getItem(key) as string)) || {
+        return JSON.parse(localStorage.getItem(key) as string) || {
             data: [],
         };
     };

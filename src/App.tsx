@@ -61,18 +61,18 @@ function App() {
     return (
         <>
             <div id="app" className={classes.app}>
-                {scene === SCENES.START && (
+                {scene === SCENES.START && 
                     <Start
                         onSceneChange={handleSceneChange}
                         handleGameRules={handleGameRules}
                         showGameRules={showGameRules}
                     />
-                )}
-                {scene === SCENES.PLAY && (
+                }
+                {scene === SCENES.PLAY && 
                     <div id="container" className={classes.absolute}>
                         <PlayGame onGameUpdate={updateGame} onSceneChange={handleSceneChange} />
                     </div>
-                )}
+                }
                 {scene === SCENES.OVER && <Over gameData={gameData} onSceneChange={handleSceneChange} />}
                 {scene === SCENES.RANK && <Rank onSceneChange={handleSceneChange} onGameStatusChange={updateGameStatus} />}
             </div>

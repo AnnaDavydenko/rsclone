@@ -1,5 +1,5 @@
 import i18n from 'i18next';
-import {en, ru} from "./messages"
+import {en, ru} from './messages'
 import { LANGUAGE } from './constant';
 import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-xhr-backend';

@@ -37,7 +37,7 @@ export class Animation {
         this.col = data.col;
         this.row = data.row;
         this.loop = data.loop;
-        this.w = (this.img.width) / this.row;
+        this.w = this.img.width / this.row;
         this.h = this.img.height / this.col;
         this.index = 0;
         this.len = this.row * this.col;

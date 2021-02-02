@@ -21,6 +21,7 @@ export class Scene{
     }
 
     draw (data: any) {
-        (this.ctx as CanvasRenderingContext2D).drawImage.apply(this.ctx, data);
+        const ctxElement = this.ctx as CanvasRenderingContext2D;
+        ctxElement.drawImage.apply(this.ctx, data);
     }
 }

@@ -133,8 +133,8 @@ export class Element{
         this.deg+=this.rotateSpeed;
         this.scene.rotateDraw({
             deg: this.deg,
-            x: this.x + this.w / 2,
-            y: this.y + this.h / 2,
+            x: this.x + (this.w / 2),
+            y: this.y + (this.h / 2),
             data: this.getDrawInfo(true),
         })
     }

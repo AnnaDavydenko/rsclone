@@ -104,19 +104,19 @@ const useStyles = makeStyles({
         borderRadius: '7px',
     },
     input: {
-        color: "#eff4fb",
+        color: '#eff4fb',
         fontSize: '20px',
     },
     cssOutlinedInput: {
-        "&$cssFocused $notchedOutline": {
-            borderColor: "#ca875b" //focused
+        '&$cssFocused $notchedOutline': {
+            borderColor: '#ca875b' //focused
         }
     },
     label: {
         color: '#ca875b',
         fontSize: '16px',
-        "&$focusedLabel": {
-            color: "#ca875b",
+        '&$focusedLabel': {
+            color: '#ca875b',
         },
     },
     focusedLabel: {},

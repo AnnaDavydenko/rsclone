@@ -1,5 +1,5 @@
-import {config} from "../config/config";
-import {loadAudios, loadImages} from "./utils";
+import {config} from '../config/config';
+import {loadAudios, loadImages} from './utils';
 import { IImagesObject } from '../types/image';
 
 type IAudioObject = { [key: string]: HTMLAudioElement } | null;
@@ -19,7 +19,7 @@ export const res = (() => {
 
     const o: IObject = {
         imageBy: (key: string) => {
-            return _images && (_images[key] as HTMLImageElement);
+            return _images && _images[key] as HTMLImageElement;
         },
         play: (key)=>{
             setTimeout(()=>{

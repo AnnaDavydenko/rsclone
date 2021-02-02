@@ -79,7 +79,6 @@ module.exports = {
     "no-script-url": 0,
     "prefer-promise-reject-errors": 0,
     "no-unused-expressions": 0,
-    // "dot-notation": 0,
     "prefer-spread": 0,
 
     "import/prefer-default-export": 0,
@@ -143,8 +142,6 @@ module.exports = {
     "@typescript-eslint/no-angle-bracket-type-assertion": 0,
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/ban-ts-comment": 0,
-    // TODO: enable the lines below when refactoring
-    // "react-hooks/rules-of-hooks": 1,
-    // "react-hooks/exhaustive-deps": 1
+    "@typescript-eslint/explicit-module-boundary-types": 0,
   },
 };

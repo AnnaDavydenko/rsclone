@@ -10,7 +10,7 @@ export class Enemy extends Plane{
         super.setup('enemy');
         this.y = random(0, h-this.h);
         if(level>1){
-           this.speed -= (level-1);
+           this.speed -= level-1;
         }
 
         this.initBullet('enemyBullet', this.scene.enemyBullets);

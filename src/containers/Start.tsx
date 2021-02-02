@@ -60,16 +60,16 @@ const Start = (props: IStart) => {
                         <p>And Sleep</p>
                     </div>
                 </div>
-                {!showGameRules && (
+                {!showGameRules && 
                     <Column id="start">
                         <Button id="start-btn" onClick={handleStart}>
-                            <p>{t("Start game")}</p>
+                            <p>{t('Start game')}</p>
                         </Button>
                     </Column>
-                )}
-                {showGameRules && (
+                }
+                {showGameRules && 
                     <GameRules />
-                )}
+                }
             </div>
         </>
     );

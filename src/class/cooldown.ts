@@ -18,7 +18,8 @@ export class Cooldown{
     }
 
     update() {
-        (this.cooldown as number)--;
+        // @ts-ignore
+        this.cooldown--;
         return this;
     }
 

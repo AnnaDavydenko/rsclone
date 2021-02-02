@@ -1,10 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import li from './../assets/img/li.png'
-import wasd from './../assets/img/was.png'
-import spacebar from './../assets/img/spacebar.png'
-import pm from './../assets/img/pm.png'
+import li from '../assets/img/li.png'
+import wasd from '../assets/img/was.png'
+import spacebar from '../assets/img/spacebar.png'
+import pm from '../assets/img/pm.png'
 import { useTranslation } from 'react-i18next';
 
 const GameRules = () => {
@@ -15,7 +15,7 @@ const GameRules = () => {
     return (
         <div className={classes.gameRulesContainer} >
             <Typography variant="h2" className={classes.title}>
-                {t("Game Rules")}
+                {t('Game Rules')}
             </Typography>
             <div>
                 <ul className={classes.ulist}>

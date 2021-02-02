@@ -60,7 +60,7 @@ export class Plane extends Element {
         this.canFire = false;
         const bullet = this.scene.factory(this.bullet);
         bullet.x = this.isPlayer ? this.x + this.w : this.x;
-        bullet.y = this.y + this.h / 2 - bullet.h / 2;
+        bullet.y = this.y + (this.h / 2) - (bullet.h / 2);
         this.bullets.push(bullet);
     }
 }
