@@ -55,10 +55,10 @@ const Start = (props: IStart) => {
             <div className={classes.main}>
                 <div className={classes.logo}>
                     <img src={logo} className={classes.logoImage} alt="logo" />
-                    <p className={classes.logoText}>
+                    <div className={classes.logoText}>
                         <p>To the Moon</p>
                         <p>And Sleep</p>
-                    </p>
+                    </div>
                 </div>
                 {!showGameRules && (
                     <Column id="start">
