@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import li from '../assets/img/li.png'
@@ -6,32 +6,50 @@ import wasd from '../assets/img/was.png'
 import spacebar from '../assets/img/spacebar.png'
 import pm from '../assets/img/pm.png'
 import { useTranslation } from 'react-i18next';
+import GameLore from '../components/GameLore';
 
 const GameRules = () => {
+
+    const [showGameLore, setShowGameLore] = useState<boolean>(false);
 
     const classes = useStyles({});
     const { t, i18n  } = useTranslation();
 
+    const handleGameLore = useCallback(() => {
+        setShowGameLore(!showGameLore);
+    }, [showGameLore]);
+
     return (
-        <div className={classes.gameRulesContainer} >
-            <Typography variant="h2" className={classes.title}>
-                {t('Game Rules')}
-            </Typography>
-            <div>
-                <ul className={classes.ulist}>
-                    <img src={wasd} className={classes.wasd} /><img src={spacebar} className={classes.spacebar} />
-                    <li>{t('Use W, A, S, D')}</li>
-                    <li>{t('The initial fuel value')}</li>
-                    <li>{t('Touching a dropped fuel')}</li>
-                    <li>{t('Hit the enemy')}</li>
-                    <li>{t('The enemy loses')}</li>
-                    <li>{t('To move to a new level, you need to add 21 points')}</li>
-                    <li>{t('The game allows negative points')}</li>
-                    <li>{t('Press P')}</li>
-                    <img src={pm} className={classes.pm} />
-                </ul>
-            </div>
-        </div>
+        <>
+            <button className={classes.gameLoreBtn} onClick={handleGameLore}>
+                {t(showGameLore ? 'Game Rules' : 'Game Lore')}
+            </button>
+
+            {!showGameLore && (<div className={classes.gameRulesContainer} >
+
+                <Typography variant="h2" className={classes.title}>
+                    {t('Game Rules')}
+                </Typography>
+                <div>
+                    <ul className={classes.ulist}>
+                        <img src={wasd} className={classes.wasd} /><img src={spacebar} className={classes.spacebar} />
+                        <li>{t('Use W, A, S, D')}</li>
+                        <li>{t('The initial fuel value')}</li>
+                        <li>{t('Touching a dropped fuel')}</li>
+                        <li>{t('Hit the enemy')}</li>
+                        <li>{t('The enemy loses')}</li>
+                        <li>{t('To move to a new level, you need to add 21 points')}</li>
+                        <li>{t('The game allows negative points')}</li>
+                        <li>{t('Press P')}</li>
+                        <img src={pm} className={classes.pm} />
+                    </ul>
+                </div>
+            </div>)}
+
+            {showGameLore &&
+            <GameLore />
+            }
+        </>
     );
 };
 
@@ -96,6 +114,24 @@ const useStyles = makeStyles({
         position: 'relative',
         top: '-20px',
     },
+    gameLoreBtn: {
+        position: 'absolute',
+        top: 'calc(100% - 99.3%)',
+        left: 'calc(100% - 92%)',
+        cursor: 'pointer',
+        zIndex: 2,
+        padding: 0,
+        outline: 'none',
+        color: '#d8f0f1',
+        fontFamily: 'Cinzel',
+        background: '#091a3863',
+        width: '95px',
+        height: '36px',
+        borderRadius: '7px',
+        fontWeight: 600,
+        border: '1px solid #b2b5b8',
+    },
 });
+
 
 export default GameRules;

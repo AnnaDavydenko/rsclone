@@ -33,5 +33,10 @@ export const en = {
         'Back': 'Back',
         'Close': 'Close',
         'Created by': 'Created by',
+        'Game Lore': 'Game Lore',
+        'The experiment with Belka and Strelka': 'The experiment with Belka and Strelka went further than we would like. Elon Musk\'s Neuralink company mixed up the chips and instead of monkeys, pugs became experimental, who received a chip to control a jetpack. This led to a revolt of the pugs.',
+        'At the same time': 'At the same time, the squirrels received a vaccination from Bill Gates and, combined with 5G irradiation, bulged their eyes, put on rocket launchers and rushed into space.',
+        'Distant relatives of a person': 'Distant relatives of humanity, seeing this chaos, decided to intervene and help dummy relatives. As a strategy, they did not think of anything better than throwing meteorites on the Earth.',
+        'The pug commando has decided to defend the Earth': 'The puggy commandos has decided to defend the Earth',
     },
 };

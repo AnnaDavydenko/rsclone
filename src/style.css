@@ -128,17 +128,6 @@ body {
     justify-content: space-between;
 }
 
-/*#over input {*/
-/*    border: none;*/
-/*    border-radius: 3px;*/
-/*    box-sizing: border-box;*/
-/*    text-align: center;*/
-/*    font-size: 1rem;*/
-/*    width: 35%;*/
-/*    margin: 0 auto;*/
-/*    height: 30px;*/
-/*}*/
-
 table {
     height: 80%;
     overflow: hidden;
