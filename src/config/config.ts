@@ -35,14 +35,9 @@ import destroyed from '../assets/sound/destroyed.mp3';
 import shoot from '../assets/sound/shoot.mp3';
 
 export const fps = 60;
-//
-// interface IConfig {
-//     game: any;
-// }
 
 export const config: any = (() => {
     const config: any = {};
-    // common
 
     const plane = (callback: any = false) => {
         const o = {
@@ -71,7 +66,7 @@ export const config: any = (() => {
             row : 4,
             cooldown : 0.15 * fps,
         }
-    }
+    };
 
     const bullet = () => {
         return {

@@ -25,8 +25,7 @@ const GameRules = () => {
                 {t(showGameLore ? 'Game Rules' : 'Game Lore')}
             </button>
 
-            {!showGameLore && (<div className={classes.gameRulesContainer} >
-
+            {!showGameLore && <div className={classes.gameRulesContainer} >
                 <Typography variant="h2" className={classes.title}>
                     {t('Game Rules')}
                 </Typography>
@@ -44,7 +43,7 @@ const GameRules = () => {
                         <img src={pm} className={classes.pm} />
                     </ul>
                 </div>
-            </div>)}
+            </div>}
 
             {showGameLore &&
             <GameLore />
@@ -132,6 +131,5 @@ const useStyles = makeStyles({
         border: '1px solid #b2b5b8',
     },
 });
-
 
 export default GameRules;

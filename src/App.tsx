@@ -11,7 +11,6 @@ import background from './assets/img/25.png';
 import background1 from './assets/img/1268307.png';
 import background3 from './assets/img/5.png';
 import background4 from './assets/img/26.png';
-import RSSchool from './assets/img/rs_school_js.png';
 import './style.css';
 import './common.css';
 import Footer from './components/Footer';
@@ -61,14 +60,14 @@ function App() {
     return (
         <>
             <div id="app" className={classes.app}>
-                {scene === SCENES.START && 
+                {scene === SCENES.START &&
                     <Start
                         onSceneChange={handleSceneChange}
                         handleGameRules={handleGameRules}
                         showGameRules={showGameRules}
                     />
                 }
-                {scene === SCENES.PLAY && 
+                {scene === SCENES.PLAY &&
                     <div id="container" className={classes.absolute}>
                         <PlayGame onGameUpdate={updateGame} onSceneChange={handleSceneChange} />
                     </div>
